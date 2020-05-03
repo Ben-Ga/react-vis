@@ -21,7 +21,7 @@
   },
   "scripts": {
     "docs": "./publish-docs.sh",
-    "clean": "rm -rf dist es bundle.* index.html && mkdir dist es",
+    "clean": "rimraf dist",
     "start": "(cd showcase && command -v yarn >/dev/null && yarn && npm start || npm install && npm start)",
     "build:browser": "browserify src/index.js -t [ babelify ] --standalone reactVis | uglifyjs > dist/dist.min.js",
     "build": "npm run clean && babel src -d dist --copy-files && BABEL_ENV=es babel src -d es --copy-files && node-sass src/main.scss dist/style.css --output-style compressed && npm run build:browser",
@@ -92,7 +92,9 @@
     "stylelint": "^7.7.1",
     "stylelint-config-standard": "^15.0.1",
     "tape": "^4.6.3",
-    "uglify-js": "^2.8.22"
+    "uglify-js": "^2.8.22",
+    "lighthouse-ci": "https://github.com/ebidel/lighthouse-ci",
+    "rimraf": "^3.0.0"
   },
   "peerDependencies": {
     "react": "15.3.0 - 16.x"
