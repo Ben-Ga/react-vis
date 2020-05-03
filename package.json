@@ -20,6 +20,7 @@
     "email": "visualization@uber.com"
   },
   "scripts": {
+    "postinstall": "cd node_modules/react-vis && npm install && npm run build",
     "docs": "./publish-docs.sh",
     "clean": "rm -rf dist es bundle.* index.html && mkdir dist es",
     "start": "(cd showcase && command -v yarn >/dev/null && yarn && npm start || npm install && npm start)",
