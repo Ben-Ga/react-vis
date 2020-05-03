@@ -21,10 +21,10 @@
   },
   "scripts": {
     "docs": "./publish-docs.sh",
-    "clean": "rimraf dist",
+    "clean": "rd /s /q dist",
     "start": "(cd showcase && command -v yarn >/dev/null && yarn && npm start || npm install && npm start)",
     "build:browser": "browserify src/index.js -t [ babelify ] --standalone reactVis | uglifyjs > dist/dist.min.js",
-    "build": "npm run clean && babel src -d dist --copy-files && BABEL_ENV=es babel src -d es --copy-files && node-sass src/main.scss dist/style.css --output-style compressed && npm run build:browser",
+    "build": "npm run clean && babel src -d dist --copy-files && cross-env BABEL_ENV=es babel src -d es --copy-files && node-sass src/main.scss dist/style.css --output-style compressed && npm run build:browser",
     "lint": "eslint src tests showcase docs --ignore-pattern node_modules --ignore-pattern bundle.js",
     "lint-styles": "stylelint src/styles/*.scss --syntax scss",
     "test:windows": "babel-node --inspect ./tests/index.js",
@@ -71,6 +71,7 @@
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
     "canvas-prebuilt": "^1.6.11",
+    "cross-env": "^7.0.2",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-prettier": "^3.0.1",
@@ -92,9 +93,7 @@
     "stylelint": "^7.7.1",
     "stylelint-config-standard": "^15.0.1",
     "tape": "^4.6.3",
-    "uglify-js": "^2.8.22",
-    "lighthouse-ci": "https://github.com/ebidel/lighthouse-ci",
-    "rimraf": "^3.0.0"
+    "uglify-js": "^2.8.22"
   },
   "peerDependencies": {
     "react": "15.3.0 - 16.x"
