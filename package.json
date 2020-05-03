@@ -20,9 +20,8 @@
     "email": "visualization@uber.com"
   },
   "scripts": {
-    "postinstall": "cd node_modules/react-vis && npm install && npm run build",
     "docs": "./publish-docs.sh",
-    "clean": "rm -rf dist es bundle.* index.html && mkdir dist es",
+    "clean": "rm -rf || rmdir /s dist es bundle.* index.html && mkdir dist es",
     "start": "(cd showcase && command -v yarn >/dev/null && yarn && npm start || npm install && npm start)",
     "build:browser": "browserify src/index.js -t [ babelify ] --standalone reactVis | uglifyjs > dist/dist.min.js",
     "build": "npm run clean && babel src -d dist --copy-files && BABEL_ENV=es babel src -d es --copy-files && node-sass src/main.scss dist/style.css --output-style compressed && npm run build:browser",
